@@ -1,6 +1,5 @@
 import random
 
-
 class Hero:
     def __init__(self, name):
         self.name = name
@@ -27,14 +26,37 @@ class Ability:
 
     def attack(self):
     # Calculate lowest attack value as an integer.
-        lowest_attack_value = 0
+        lowest_attack_value =  self.attack_strength // 2
     # Use random.randint(a, b) to select a random attack value.
         random_attack_value = random.randint(2,7)
     # Return attack value between 0 and the full attack.
-        return self.attack_strength - random_attack_value
+        return random.randint(lowest_attack_value, self.attack_strength)
 
     def update_attack(self, attack_strength):
         self.attack_strength = attack_strength
+
+class Weapon(Ability):
+    def attack(self):
+        return random.randint(0,self.attack_strength)
+
+class Team:
+    def __init__(self, team_name):
+        self.name = team.name
+        self.heros = list()
+
+    def add_hero(self, Hero):
+        heros.append(Hero)
+
+    def remove_hero(self, name):
+        for hero, index in enumerate(self.heros):
+            if name == hero:
+                del self.heros[index]
+            else: return 0
+
+    def view_all_heros(self):
+        for hero in self.heros:
+            print(hero)
+
 
 if __name__ == "__main__":
     hero = Hero("Black Panther")
