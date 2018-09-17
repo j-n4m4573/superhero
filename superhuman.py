@@ -45,4 +45,3 @@ if __name__ == "__main__":
     new_ability = Ability("Super Human Strength", 800)
     hero.add_ability(new_ability)
     print(hero.attack())
-    print(hero.ability) 
