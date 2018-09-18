@@ -2,4 +2,5 @@
 import dog
 
 
-dog.Dog.bark(self)
+my_dog = dog.Dog("Ziggy")
+my_dog.bark()

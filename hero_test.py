@@ -1,7 +1,7 @@
+import superheroes
 import pytest
 import io
 import sys
-import superheros
 # Helper Function
 
 def capture_console_output(function_body):

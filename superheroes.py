@@ -41,29 +41,38 @@ class Weapon(Ability):
 
 class Team:
     def __init__(self, team_name):
-        self.name = team.name
-        self.heros = list()
+        self.name = team_name
+        self.heroes = list()
 
     def add_hero(self, Hero):
-        heros.append(Hero)
+        self.heroes.append(Hero)
+
+    def find_hero(self, name):
+        for index, hero in enumerate(self.heroes):
+            if name == hero.name:
+                return hero
+        return 0
 
     def remove_hero(self, name):
-        for hero, index in enumerate(self.heros):
-            if name == hero:
-                del self.heros[index]
-            else: return 0
+        for index, hero in enumerate(self.heroes):
+            if name == hero.name:
+                del self.heroes[index]
+        return 0
 
-    def view_all_heros(self):
-        for hero in self.heros:
-            print(hero)
+    def view_all_heroes(self):
+        for hero in self.heroes:
+            print(hero.name)
 
+#
+# if __name__ == "__main__":
+#     hero = Hero("Black Panther")
+#     print(hero.attack())
+#     ability = Ability("Biokinesis", 3000)
+#     hero.add_ability(ability)
+#     print(hero.attack())
+#     new_ability = Ability("Super Human Strength", 800)
+#     hero.add_ability(new_ability)
+#     print(hero.attack())
 
-if __name__ == "__main__":
-    hero = Hero("Black Panther")
-    print(hero.attack())
-    ability = Ability("Biokinesis", 3000)
-    hero.add_ability(ability)
-    print(hero.attack())
-    new_ability = Ability("Super Human Strength", 800)
-    hero.add_ability(new_ability)
-    print(hero.attack())
+    # team = Team("One")
+    # print(team.find_hero("Alexa"))
