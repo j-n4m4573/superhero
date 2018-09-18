@@ -14,7 +14,7 @@ class Hero:
         # Call the attack method on every ability in our ability list
         for ability in self.abilities:
             ability.attack()
-            attack_counter += 1
+            attack_counter += ability.attack()
         return attack_counter
         # Add up and return the total of all attacks
 
@@ -63,6 +63,14 @@ class Team:
         for hero in self.heroes:
             print(hero.name)
 
+# big_strength = Ability("Overwhelming Strength", 30000)
+# athena = Hero("Athena")
+#     # assert athena.attack() == 0
+# athena.add_ability(big_strength)
+# attack = athena.attack()
+# print(attack)
+
+# >       assert attack <= 30000 and attack >= 15000
 #
 # if __name__ == "__main__":
 #     hero = Hero("Black Panther")
