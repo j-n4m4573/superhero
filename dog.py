@@ -1,7 +1,4 @@
-import random
 
-
-print(random.randint(2,7))
 
 
 class Dog:
@@ -13,8 +10,6 @@ class Dog:
     def bark(self):
         print(self.greeting)
 
-
-
 my_first_dog = Dog("Annie")
 my_second_dog = Dog("Wyatt")
 
@@ -23,10 +18,6 @@ print(my_second_dog.name)
 
 my_first_dog.bark()
 my_second_dog.bark()
-
-
-
-
 
 # if __name__ == "__main__":
 #     my_dog = Dog()

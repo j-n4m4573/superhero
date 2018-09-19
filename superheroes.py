@@ -1,13 +1,34 @@
 import random
 
 class Hero:
-    def __init__(self, name):
+    def __init__(self, name, health = 100):
         self.name = name
         self.abilities = list()
+        self.amor = list()
+        self.start_health = health
+        self.health = health
+        self.deaths = 0
+        self.kills = 0
+
+    def defend(self):
+        for amor in self.amor:
+            self.defend()
+            self.defense += self.defend()
+        if self.health == 0:
+            return 0
+
+    def take_damage(self, damage_amount):
+        self.health - self.damage_amount
+        if self.health == 0:
+           self.deaths += 1
+
 
     def add_ability(self, ability):
         #Append ability to self.abilities
         self.ability = self.abilities.append(ability)
+
+    def add_kill(self, num_kills):
+        self.num_kills = num_kills
 
     def attack(self):
         attack_counter = 0
@@ -44,6 +65,22 @@ class Team:
         self.name = team_name
         self.heroes = list()
 
+    def attack(self, other_team):
+        total_team_strength = 0
+        total_team_kills = 0
+        for hero in self.heros:
+            total_team_strength += self.heroes.attack_strength
+            total_team_kills += self.heroes.num_kills
+        self.defend(other_team)
+
+    def defend(self, damage_amount):
+        total_defense = 0
+        for hero in self.heros:
+            total_defense += hero.defense
+
+    def deal_damage(self, damage):
+        damage = self.damage_amount // len(self.heroes)
+
     def add_hero(self, Hero):
         self.heroes.append(Hero)
 
@@ -62,6 +99,15 @@ class Team:
     def view_all_heroes(self):
         for hero in self.heroes:
             print(hero.name)
+
+class Amor:
+    def __init__(self, name, defense):
+        self.name = name
+        self.defense = defense
+
+    def defend(self):
+        return random.randint(0, self.defense)
+
 
 # big_strength = Ability("Overwhelming Strength", 30000)
 # athena = Hero("Athena")
