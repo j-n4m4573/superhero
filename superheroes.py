@@ -4,14 +4,14 @@ class Hero:
     def __init__(self, name, health = 100):
         self.name = name
         self.abilities = list()
-        self.amor = list()
+        self.armor = list()
         self.start_health = health
         self.health = health
         self.deaths = 0
         self.kills = 0
 
     def defend(self):
-        for amor in self.amor:
+        for amor in self.armor:
             self.defend()
             self.defense += self.defend()
         if self.health == 0:
@@ -21,7 +21,6 @@ class Hero:
         self.health - self.damage_amount
         if self.health == 0:
            self.deaths += 1
-
 
     def add_ability(self, ability):
         #Append ability to self.abilities
@@ -79,7 +78,18 @@ class Team:
             total_defense += hero.defense
 
     def deal_damage(self, damage):
-        damage = self.damage_amount // len(self.heroes)
+        self.damage = self.damage_amount // len(self.heroes)
+
+    def revive_heroes(self, health = 100):
+        for hero in self.heros:
+            hero.health = self.health
+
+    def stats(self):
+        for hero in self.heroes:
+            print("{} {} {}".format(hero.name, hero.deaths, hero.kills))
+    def update_kills(self):
+        for hero in self.heroes:
+            print(self.heros.num_kills)
 
     def add_hero(self, Hero):
         self.heroes.append(Hero)
@@ -100,7 +110,7 @@ class Team:
         for hero in self.heroes:
             print(hero.name)
 
-class Amor:
+class Armor:
     def __init__(self, name, defense):
         self.name = name
         self.defense = defense
@@ -108,6 +118,8 @@ class Amor:
     def defend(self):
         return random.randint(0, self.defense)
 
+armor = Hero("The Ring", 200)
+print(armor.health)
 
 # big_strength = Ability("Overwhelming Strength", 30000)
 # athena = Hero("Athena")

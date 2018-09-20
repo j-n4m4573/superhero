@@ -13,7 +13,6 @@ def capture_console_output(function_body):
     sys.stdout = sys.__stdout__
     return string_io.getvalue()
 
-
 def create_armor():
     armors = [
         "Calculator",
