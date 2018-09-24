@@ -13,8 +13,8 @@ class Hero:
     def defend(self):
         total_defense = 0
         for armor in self.armors:
-            self.defend()
-            total_defense += self.defend()
+            armor.defend()
+            total_defense += armor.defend()
         if self.health == 0:
             return 0
         else:
@@ -30,7 +30,7 @@ class Hero:
         self.ability = self.abilities.append(ability)
 
     def add_kill(self, num_kills):
-        self.num_kills = num_kills
+        self.kills = num_kills
 
     def add_armor(self, armor):
         self.armor = self.armors.append(armor)
@@ -69,13 +69,14 @@ class Team:
     def __init__(self, team_name):
         self.name = team_name
         self.heroes = list()
+        self.total_team_strength = 0
+        self.total_team_kills = 0
 
     def attack(self, other_team):
-        total_team_strength = 0
-        total_team_kills = 0
+
         for hero in self.heroes:
-            total_team_strength += hero.attack_strength
-            total_team_kills += hero.num_kills
+            self.total_team_strength += hero.attack()
+            self.total_team_kills += hero.kills
         self.defend(other_team)
 
     def defend(self, damage_amount):
@@ -123,6 +124,16 @@ class Armor:
 
     def defend(self):
         return random.randint(0, self.defense)
+
+
+jodie = Hero("Jodie Foster")
+gauntlets = Armor("Gauntlets", 30)
+jodie.add_armor(gauntlets)
+defense = jodie.defend()
+
+print(defense)
+
+
 
 # armor = Hero("The Ring", 200)
 # print(armor.defend())
