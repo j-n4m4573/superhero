@@ -4,18 +4,21 @@ class Hero:
     def __init__(self, name, health = 100):
         self.name = name
         self.abilities = list()
-        self.armor = list()
+        self.armors = list()
         self.start_health = health
         self.health = health
         self.deaths = 0
         self.kills = 0
 
     def defend(self):
-        for amor in self.armor:
+        total_defense = 0
+        for armor in self.armors:
             self.defend()
-            self.defense += self.defend()
+            total_defense += self.defend()
         if self.health == 0:
             return 0
+        else:
+            return total_defense
 
     def take_damage(self, damage_amount):
         self.health - self.damage_amount
@@ -28,6 +31,9 @@ class Hero:
 
     def add_kill(self, num_kills):
         self.num_kills = num_kills
+
+    def add_armor(self, armor):
+        self.armor = self.armors.append(armor)
 
     def attack(self):
         attack_counter = 0
@@ -67,15 +73,15 @@ class Team:
     def attack(self, other_team):
         total_team_strength = 0
         total_team_kills = 0
-        for hero in self.heros:
-            total_team_strength += self.heroes.attack_strength
-            total_team_kills += self.heroes.num_kills
+        for hero in self.heroes:
+            total_team_strength += hero.attack_strength
+            total_team_kills += hero.num_kills
         self.defend(other_team)
 
     def defend(self, damage_amount):
         total_defense = 0
-        for hero in self.heros:
-            total_defense += hero.defense
+        for hero in self.heroes:
+            total_defense += hero.defend()
 
     def deal_damage(self, damage):
         self.damage = self.damage_amount // len(self.heroes)
@@ -89,7 +95,7 @@ class Team:
             print("{} {} {}".format(hero.name, hero.deaths, hero.kills))
     def update_kills(self):
         for hero in self.heroes:
-            print(self.heros.num_kills)
+            print(self.heroes.num_kills)
 
     def add_hero(self, Hero):
         self.heroes.append(Hero)
@@ -118,8 +124,8 @@ class Armor:
     def defend(self):
         return random.randint(0, self.defense)
 
-armor = Hero("The Ring", 200)
-print(armor.health)
+# armor = Hero("The Ring", 200)
+# print(armor.defend())
 
 # big_strength = Ability("Overwhelming Strength", 30000)
 # athena = Hero("Athena")
