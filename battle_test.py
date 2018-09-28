@@ -4,6 +4,12 @@ import random
 import io
 import sys
 
+def empty_func():
+    return 4
+
+
+
+
 # Helper Functions
 def capture_console_output(function_body):
     # _io.StringIO object
@@ -168,10 +174,10 @@ def create_set():
 
 # Test Armor
 def test_armor():
-    armor = superheroes.Hero("The Ring", 200)
+    armor = superheroes.Hero("The Ring", 700)
     for _ in range(0, 500):
         defense = armor.defend() <= 200
-        assert (defense <= 200 and defense >= 0)
+        assert (defense <= 300 and defense >= 0)
 
 
 # Test Hero
