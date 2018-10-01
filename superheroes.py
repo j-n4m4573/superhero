@@ -126,7 +126,7 @@ class Team:
 
     def stats(self):
         for hero in self.heroes:
-            print("{} {} {}".format(hero.name, hero.deaths, hero.kills))
+            print("{} D: {} K: {}".format(hero.name, hero.deaths, hero.kills))
     def update_kills(self):
         for hero in self.heroes:
             print(self.heroes.num_kills)
@@ -158,51 +158,150 @@ class Armor:
     def defend(self):
         return random.randint(0, self.defense)
 
-# class Arena:
-#     def __init__(self):
-#         self.team_one = none
-#         self.team_two = none
-#
-#
-#     def build_team_one(self, name):
-#         # builds team one
-#         team_one_name = input("Player one: Please choose a name")
-#         self.team.one = team_one_name
-#
-#     def build_team_two(self, name):
-#         # builds team two
-#         team_two_name = input("Player two: Please choose a name")
-#         self.team.two = team_two_name
-#
-#     def team_battle(self):
-#         # method to continue battle until one team is dead
-#         teams = [self.team_one, self.team_two]
-#         rand_num = random.randint(0,1)
-#         # choose attack team
-#         attack_team = teams[rand_num]
-#         #attack team attack
-#         attack
-#
-#
-#     def show_stats(self):
-#         # print out battle stats for the team and for each hero
+class Arena:
+    def __init__(self):
+        self.team_one = none
+        self.team_two = none
 
-new_heroes = ["Tom", "Jake", "Mike", "Chris"]
-armors = ["hat", "socks", "shoes", "shirt"]
-abilities = ["flame thrower", "lazers", "superhuman strength", "super vision"]
-team_list = list()
-num = 3
+
+    def build_team_one(self, name):
+        # builds team one
+        team_one_name = input("Player one: Please choose a name")
+        self.team.one = Team(team_one_name)
+
+        for i in range(0,num):
+            team_one_name.heroes.append(Hero(new_heroes[i]))
+
+        for hero in team_one_name.heroes:
+            new_armor = Armor(armors[random.randint(0,4)], armor_power)
+            hero.add_armor(new_armor)
+            new_ability = Ability(abilities[random.randint(0,4)], ability_power)
+            hero.add_ability(new_ability)
+
+
+    def build_team_two(self, name):
+        # builds team two
+        team_two_name = input("Player two: Please choose a name")
+        self.team.two = Team(team_two_name)
+
+        for i in range(0,num):
+            team_two_name.heroes.append(Hero(new_heroes[i]))
+
+        for hero in the_winners.heroes:
+            new_armor = Armor(armors[random.randint(0,4)], armor_power)
+            hero.add_armor(new_armor)
+            new_ability = Ability(abilities[random.randint(0,4)], ability_power)
+            hero.add_ability(new_ability)
+
+
+
+    def team_battle(self):
+        # method to continue battle until one team is dead
+        teams = [self.team_one, self.team_two]
+        # choose attack team
+        attack_team = teams[random.randint(0,1)]
+        if attack_team == self.team_one:
+            defend_team = self.team_two
+        else:
+            defend_team = self.team.one
+        #attack team attack
+        attack_team.attack(defend_team)
+
+
+    def show_stats(self):
+        # print out battle stats for the team and for each hero
+
+new_heroes = ["Tom", "Jake", "Mike", "Chris", "Ralph", "Morty", "Koji", "Jarro", "Karmicheal", "Kingston"]
+armors = ["hat", "socks", "shoes", "shirt", "spatula", "cape", "du-rag", "stocking cap", "beanie", "sweater vest", "toupe"]
+abilities = ["mind control", "aura vision", "teleportation", "telescopic vision","superhuman strength", "telekinesis", "Magma Manipulation", "Electromagnetic Manipulation"]
+armor_power = random.randint(0, 300)
+ability_power = random.randint(0, 400)
+team_one = list()
+team_two = list()
+num = 4
+
+
+
+champions = Team("champions")
+the_winners = Team("the winners")
+
+# create hero object
+# create ability object
+# create armor object
+#
+# append hero obect to team heroes object
+# create ability object
+# append ability to team heroes hero object
+# create armor object
+
+
+
 
 for i in range(0,num):
-    team_list.append(Hero(new_heroes[i]))
-    team_list[i].add_armor(armors[i])
-    team_list[i].add_ability(abilities[i])
+    champions.heroes.append(Hero(new_heroes[i]))
 
-print(team_list[0].abilities)
+for i in range(0,num):
+    the_winners.heroes.append(Hero(new_heroes[i]))
+
+for hero in champions.heroes:
+    new_armor = Armor(armors[random.randint(0,4)], armor_power)
+    hero.add_armor(new_armor)
+    new_ability = Ability(abilities[random.randint(0,4)], ability_power)
+    hero.add_ability(new_ability)
+
+for hero in the_winners.heroes:
+    new_armor = Armor(armors[random.randint(0,4)], armor_power)
+    hero.add_armor(new_armor)
+    new_ability = Ability(abilities[random.randint(0,4)], ability_power)
+    hero.add_ability(new_ability)
+
+print(the_winners.heroes[3].armors[0].name)
+print(the_winners.heroes[3].abilities[0].name)
+
+print(champions.heroes[3].armors[0].name)
+print(champions.heroes[3].abilities[0].name)
+
+champions.attack(the_winners)
+champions.attack(the_winners)
+champions.stats()
+the_winners.stats()
+champions.attack(the_winners)
+champions.stats()
+the_winners.stats()
+
+
+
+
+
+
+    # for i in range(0, 2)
+    # team_one[i].add_armor(armors[i])
+    #
+    # team_one[i].add_ability(abilities[i])
+
+# for i in range(0, num):
+#     team_two.append(Hero(new_heroes[i]))
+#     team_two[i].add_armor(armors[i])
+#     team_two[i].add_ability(abilities[i])
+#
+# for hero in team_one:
+#     champions.heroes.append(hero)
+#
+# for hero in team_two:
+#     the_winners.heroes.append(hero)
+
+
+# print(champions.heroes[0].name)
+# print(the_winners.heroes[0].name)
+#
+# champions.attack(the_winners)
+# print(the_winners.heroes[0])
+
+
+# for hero in team_one:
 
 # for i in range(0,num):
 
-print(team_list[i].armors[0])
 
 # team_one = Team("One")
 # jodie = Hero("Jodie Foster")
