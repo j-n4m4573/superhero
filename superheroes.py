@@ -72,6 +72,7 @@ class Team:
     def __init__(self, team_name):
         self.name = team_name
         self.heroes = list()
+        self.number_of_kills = 0
 
     def attack(self, other_team):
         # attack other team
@@ -80,9 +81,9 @@ class Team:
         # add each heros attack power to total strength of the teams attack
             total_team_strength += hero.attack()
         # call the defend method on the other team
-        number_of_kills = other_team.defend(total_team_strength)
+        self.number_of_kills = other_team.defend(total_team_strength)
         # number of kills per hero
-        kills_per_hero = number_of_kills // len(self.heroes)
+        kills_per_hero = self.number_of_kills // len(self.heroes)
         # add kills per hero to each hero
         for hero in self.heroes:
             hero.add_kill(kills_per_hero)
@@ -160,39 +161,45 @@ class Armor:
 
 class Arena:
     def __init__(self):
-        self.team_one = none
-        self.team_two = none
-
+        self.team_one = Team("team_one")
+        self.team_two = Team("team_two")
+        # team_one_name = input("Player one: Please choose a name")
+        # self.team_one = Team(team_one_name)
+        self.build_team_one(self.team_one)
+        #
+        # team_two_name = input("Player two: Please choose a name")
+        # self.team_two = Team(team_two_name)
+        self.build_team_two(self.team_two)
+        self.team_battle()
+        self.show_stats()
 
     def build_team_one(self, name):
         # builds team one
-        team_one_name = input("Player one: Please choose a name")
-        self.team.one = Team(team_one_name)
+        # team_one_name = input("Player one: Please choose a name")
+        # self.team_one = Team("team_one")
 
         for i in range(0,num):
-            team_one_name.heroes.append(Hero(new_heroes[i]))
+            self.team_one.heroes.append(Hero(new_heroes[i]))
 
-        for hero in team_one_name.heroes:
+        for hero in self.team_one.heroes:
             new_armor = Armor(armors[random.randint(0,4)], armor_power)
             hero.add_armor(new_armor)
             new_ability = Ability(abilities[random.randint(0,4)], ability_power)
             hero.add_ability(new_ability)
-
 
     def build_team_two(self, name):
         # builds team two
-        team_two_name = input("Player two: Please choose a name")
-        self.team.two = Team(team_two_name)
+        # team_two_name = input("Player two: Please choose a name")
+        # self.team.two = Team(team_two_name)
 
         for i in range(0,num):
-            team_two_name.heroes.append(Hero(new_heroes[i]))
+            self.team_two.heroes.append(Hero(new_heroes[i]))
 
-        for hero in the_winners.heroes:
+        for hero in self.team_two.heroes:
             new_armor = Armor(armors[random.randint(0,4)], armor_power)
             hero.add_armor(new_armor)
             new_ability = Ability(abilities[random.randint(0,4)], ability_power)
             hero.add_ability(new_ability)
-
 
 
     def team_battle(self):
@@ -203,13 +210,15 @@ class Arena:
         if attack_team == self.team_one:
             defend_team = self.team_two
         else:
-            defend_team = self.team.one
-        #attack team attack
-        attack_team.attack(defend_team)
+            defend_team = self.team_one
 
+        while attack_team.number_of_kills <= 4 or defend_team.number_of_kills <= 4:
+            attack_team.attack(defend_team)
+            defend_team.attack(attack_team)
 
     def show_stats(self):
-        # print out battle stats for the team and for each hero
+        self.team_one.stats()
+        self.team_two.stats()
 
 new_heroes = ["Tom", "Jake", "Mike", "Chris", "Ralph", "Morty", "Koji", "Jarro", "Karmicheal", "Kingston"]
 armors = ["hat", "socks", "shoes", "shirt", "spatula", "cape", "du-rag", "stocking cap", "beanie", "sweater vest", "toupe"]
@@ -220,22 +229,11 @@ team_one = list()
 team_two = list()
 num = 4
 
-
+new_arena = Arena()
+new_arena.team_battle()
 
 champions = Team("champions")
 the_winners = Team("the winners")
-
-# create hero object
-# create ability object
-# create armor object
-#
-# append hero obect to team heroes object
-# create ability object
-# append ability to team heroes hero object
-# create armor object
-
-
-
 
 for i in range(0,num):
     champions.heroes.append(Hero(new_heroes[i]))
